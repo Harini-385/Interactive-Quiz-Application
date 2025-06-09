@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Start Quiz - Interactive Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f0f8ff;
+      background-image: url(https://i.pinimg.com/736x/e8/74/fa/e874fa712efdde53c632beae172b8dc2.jpg);
+      
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      background-image: url(https://i.pinimg.com/736x/e8/74/fa/e874fa712efdde53c632beae172b8dc2.jpg);
+      padding: 15px;
+    }
+
+    .nav-left a, .nav-right a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: white;
+      font-weight: bolder;
+      padding: 8px 15px;
+      background-color: #9370db;
+      border-radius: 8px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+      background-color:white;
+      margin-top: 50px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(228, 226, 229, 0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #4b0082;
+    }
+
+    select, button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #d0b7e3;
+      color: white;
+      cursor: pointer;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #ddd5e2;
+    }
+
+    .instructions {
+      margin-top: 30px;
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-left: 5px solid #4b0082;
+      border-radius: 6px;
+    }
+
+    .instructions h3 {
+      color: #e3dce9;
+    }
+
+    ul {
+      margin-left: 20px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="home.html">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+    </div>
+  </nav>
+
+  <!-- Start Quiz Section -->
+  <div class="container">
+    <h1>Start Your Quiz</h1>
+
+    <!-- Topic Selection -->
+    <label for="topic">Select a Topic:</label>
+    <select id="topic">
+      <option value="math">Mathematics</option>
+      <option value="science">Science</option>
+      <option value="history">History</option>
+      <option value="gk">General Knowledge</option>
+    </select>
+
+    <!-- Instructions -->
+    <div class="instructions">
+      <h3>Instructions:</h3>
+      <ul>
+        <li>This quiz consists of 5 questions.</li>
+        <li>Each correct answer gives you 1 point.</li>
+        <li>No negative marking.</li>
+        <li>You cannot go back once you move to the next question.</li>
+        <li>Click the "Start Quiz" button to begin.</li>
+      </ul>
+    </div>
+
+    <!-- Start Quiz Button -->
+    <button onclick="startQuiz()">Start Quiz</button>
+  </div>
+
+  <script>
+    function startQuiz() {
+      const topic = document.getElementById("topic").value;
+      // Redirect to quiz page with topic (you can pass as query string if needed)
+      window.location.href = "quiz.html?topic=" + topic;
+    }
+  </script>
+
+</body>
+</html>
