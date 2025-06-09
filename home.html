@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interactive Quiz - Home</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: #f2f2f2;
+      background-image: url(https://i.pinimg.com/736x/e8/74/fa/e874fa712efdde53c632beae172b8dc2.jpg);
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      background-color: #4b0082;
+      padding: 15px;
+    }
+    .nav-left a, .nav-right a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      padding: 8px 15px;
+      background-color: #9370db;
+      border-radius: 8px;
+    }
+    .container {
+      padding: 40px;
+      text-align: center;
+    }
+    h1 {
+      font-size: 48px;
+      color: #a94ceb;
+    }
+    h2{
+        font-size: 28px;
+        color:rgb(220, 216, 216);
+    }
+    p {
+      font-size: 18px;
+      color:rgb(68, 63, 63);
+      max-width: 800px;
+      margin: auto;
+    }
+    .features {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    .feature {
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      width: 250px;
+      margin: 20px;
+      padding: 20px;
+      border-radius: 10px;
+    }
+    .feature h3 {
+      color: #4b0082;
+    }
+    .start-btn {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      background-color: #a94ceb;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .start-btn:hover {
+      background-color: #6a0dad;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html">Home</a>
+      <a href="contact.html">Contact</a>
+      <a href="about.html">About</a>
+    </div>
+    <div class="nav-right">
+      <a href="register.html">Register</a>
+      <a href="login.html">Login</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+    <h1>Welcome to Interactive Quiz</h1>
+    <h2>Test your knowledge with our fun and interactive quiz platform. Whether you're preparing for exams or just love learning, we’ve got questions for everyone!</h2>
+
+    <!-- Features Section -->
+    <div class="features">
+      <div class="feature">
+        <h3>📚 Multiple Categories</h3>
+        <p>Choose from a wide range of topics like Science, History, Math, and more!</p>
+      </div>
+      <div class="feature">
+        <h3>⚡ Instant Feedback</h3>
+        <p>Get your quiz results instantly and learn from your mistakes in real time.</p>
+      </div>
+      <div class="feature">
+        <h3>🎯 Track Progress</h3>
+        <p>Save your scores and monitor your improvement over time.</p>
+      </div>
+    </div>
+
+    <!-- Start Quiz Button -->
+    <button class="start-btn" onclick="location.href='quiz.html'">Start Quiz</button>
+  </div>
+
+</body>
+</html>
