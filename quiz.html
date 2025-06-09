@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz with Leaderboard</title>
+  <style>
+    body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #2e1a47; /* deep violet background */
+  border-radius: 8px;
+  color: #060f09; /* light violet text */
+  font-weight: 600;
+  background-image: url(https://i.pinimg.com/736x/e8/74/fa/e874fa712efdde53c632beae172b8dc2.jpg);
+}
+
+h2, h3 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: #edeaf1; /* softer violet */
+
+}
+
+.question {
+  margin-bottom: 15px;
+  font-weight:800;
+  font-size: 1.2rem;
+  margin-left: 50px;
+  color:whitesmoke;
+}
+
+.options label {
+  display: block;
+  margin-bottom: 12px;
+  cursor: pointer;
+  padding: 12px 12px;
+  border-radius: 6px;
+  background-color: #e6e3ee; /* medium violet */
+  transition: background-color 0.3s ease;
+}
+
+.options label:hover {
+  background-color: #a57fef; /* lighter violet on hover */
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+  accent-color: #7510db; /* violet for radio button */
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 30px;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  background-color: #7c4dff; /* bright violet button */
+  color: white;
+  display: block;
+  margin: 20px auto 0;
+  box-shadow: 0 4px 10px rgba(124, 77, 255, 0.5);
+  transition: background-color 0.3s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: #b99bf9;
+  box-shadow: 0 6px 15px rgba(158, 114, 255, 0.7);
+}
+
+button:disabled {
+  background-color: #a295c9;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.score, #leaderboard {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 30px;
+  text-align: center;
+  color: #111013;
+}
+p{
+    color: yellow;
+    font-weight: 500;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  width: 80%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: block;
+  border: 1.5px solid #7c4dff;
+  border-radius: 6px;
+  background-color: #e0e0f4;
+  color: #070410;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: #bb86fc;
+  background-color: #e1e0e4;
+}
+
+  </style>
+</head>
+<body>
+  <h2>Simple Quiz</h2>
+  <div id="quiz-container">
+    <div id="question-text" class="question"></div>
+    <div id="options" class="options"></div>
+    <button id="next-btn" disabled>Next</button>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What is the capital of France?",
+        options: ["Berlin", "Madrid", "Paris", "Lisbon"],
+        answer: 2, // Paris
+      },
+      {
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Jupiter", "Venus"],
+        answer: 1, // Mars
+      },
+      {
+        question: "What is the largest ocean on Earth?",
+        options: ["Atlantic", "Indian", "Arctic", "Pacific"],
+        answer: 3, // Pacific
+      },
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let selectedOption = null;
+
+    const questionText = document.getElementById("question-text");
+    const optionsContainer = document.getElementById("options");
+    const nextBtn = document.getElementById("next-btn");
+
+    function loadQuestion() {
+      nextBtn.disabled = true;
+      selectedOption = null;
+
+      const currentQuestion = quizData[currentQuestionIndex];
+      questionText.textContent = currentQuestion.question;
+      optionsContainer.innerHTML = "";
+
+      currentQuestion.options.forEach((option, index) => {
+        const optionLabel = document.createElement("label");
+        optionLabel.innerHTML = `
+          <input type="radio" name="option" value="${index}" />
+          ${option}
+        `;
+        optionsContainer.appendChild(optionLabel);
+      });
+
+      // Add event listener to all radios
+      const optionInputs = optionsContainer.querySelectorAll('input[name="option"]');
+      optionInputs.forEach((input) =>
+        input.addEventListener("change", () => {
+          selectedOption = parseInt(input.value);
+          nextBtn.disabled = false;
+        })
+      );
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (selectedOption === null) return;
+
+      if (selectedOption === quizData[currentQuestionIndex].answer) {
+        score++;
+      }
+
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex < quizData.length) {
+        loadQuestion();
+      } else {
+        showScoreAndSave();
+      }
+    });
+
+    // Show final score and ask user to save their score with name
+    function showScoreAndSave() {
+      document.getElementById("quiz-container").style.display = "none";
+
+      const container = document.createElement("div");
+      container.style.textAlign = "center";
+      container.innerHTML = `
+        <h2>Your score: ${score} / ${quizData.length}</h2>
+        <p>Enter your name to save your score:</p>
+        <input type="text" id="username" placeholder="Your name" />
+        <br/><br/>
+        <button id="save-score-btn" disabled>Save Score</button>
+        <div id="leaderboard" style="margin-top:30px;"></div>
+      `;
+
+      document.body.appendChild(container);
+
+      const usernameInput = container.querySelector("#username");
+      const saveScoreBtn = container.querySelector("#save-score-btn");
+      const leaderboardDiv = container.querySelector("#leaderboard");
+
+      usernameInput.addEventListener("input", () => {
+        saveScoreBtn.disabled = usernameInput.value.trim() === "";
+      });
+
+      saveScoreBtn.addEventListener("click", () => {
+        const playerName = usernameInput.value.trim();
+        if (playerName === "") return;
+
+        let leaderboard = JSON.parse(localStorage.getItem("quiz_leaderboard")) || [];
+
+        leaderboard.push({ name: playerName, score });
+
+        leaderboard.sort((a, b) => b.score - a.score);
+
+        leaderboard = leaderboard.slice(0, 5);
+
+        localStorage.setItem("quiz_leaderboard", JSON.stringify(leaderboard));
+
+        displayLeaderboard(leaderboard, leaderboardDiv);
+
+        usernameInput.disabled = true;
+        saveScoreBtn.disabled = true;
+      });
+    }
+
+    function displayLeaderboard(leaderboard, container) {
+      if (leaderboard.length === 0) {
+        container.innerHTML = "<p>No leaderboard data found.</p>";
+        return;
+      }
+
+      let html = "<h3>Leaderboard (Top 5)</h3><ol>";
+      leaderboard.forEach((entry) => {
+        html += `<li>${entry.name} - ${entry.score}</li>`;
+      });
+      html += "</ol>";
+
+      container.innerHTML = html;
+    }
+
+    // Initialize the first question
+    loadQuestion();
+  </script>
+</body>
+</html>
