@@ -60,4 +60,12 @@ HTML5 – for structure
 CSS3 – for styling and layout
 
 JavaScript (ES6) – for quiz logic, dynamic rendering, and scoring
+![Image](https://github.com/user-attachments/assets/3761ee29-862c-43c0-a2c6-aae9eea787e1)
+![Image](https://github.com/user-attachments/assets/975d4bbb-ba34-4bcd-8ea1-13815000096c)
+![Image](https://github.com/user-attachments/assets/aeb4d3a9-2314-429e-abf4-4b7ce5e901c6)
+![Image](https://github.com/user-attachments/assets/e40a7569-4f50-49fe-8e06-4af9c412b735)
+![Image](https://github.com/user-attachments/assets/8bc1c08d-f00d-46d6-a8a9-670dd3a81c49)
+![Image](https://github.com/user-attachments/assets/d04e2ad6-3dda-4e3e-b7c4-97f503ebfb7b)
+![Image](https://github.com/user-attachments/assets/478bc9d3-f205-4bc8-8933-8dabf9152f05)
+![Image](https://github.com/user-attachments/assets/315f420e-1920-4112-8e6e-e1b1650905a1)
 
